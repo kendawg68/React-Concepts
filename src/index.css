@@ -1,0 +1,140 @@
+/* ---------------------------------------------------------------------------
+   Google Fonts — a distinctive pairing (NOT Inter/Roboto/system):
+   - Fraunces  → the expressive display serif used by `font-serif`
+   - Hanken Grotesk → the calm body/UI sans
+   @import rules must come first, before any other CSS.
+--------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Tailwind v4 — single import pulls in base, components and utilities. */
+@import 'tailwindcss';
+
+/* ---------------------------------------------------------------------------
+   THEME TOKENS (shadcn-style)
+   Two layers:
+   1. Raw CSS variables (--background, --foreground, ...) that hold the actual
+      colours. Dark mode just re-assigns these.
+   2. @theme inline mapping (--color-background: var(--background) ...) so that
+      Tailwind generates utilities like `bg-background` / `text-foreground`
+      that read from the raw variables.
+   Colours are written in oklch so the component's relative-colour glass CSS
+   — oklch(from var(--background) ...) — works.
+--------------------------------------------------------------------------- */
+
+:root {
+  /* Base surfaces — warm ivory paper */
+  --background: oklch(0.981 0.008 85);
+  --foreground: oklch(0.24 0.02 45);
+  --card: oklch(0.995 0.006 85);
+  --card-foreground: oklch(0.24 0.02 45);
+
+  /* Brand — deep teal against the warm paper */
+  --primary: oklch(0.56 0.1 195);
+  --primary-foreground: oklch(0.98 0.01 85);
+
+  /* Support — warm amber */
+  --secondary: oklch(0.74 0.13 62);
+  --secondary-foreground: oklch(0.24 0.02 45);
+
+  --muted: oklch(0.955 0.01 85);
+  --muted-foreground: oklch(0.52 0.02 55);
+
+  /* Accent — coral */
+  --accent: oklch(0.72 0.16 24);
+  --accent-foreground: oklch(0.98 0.01 85);
+
+  --destructive: oklch(0.59 0.21 27);
+
+  --border: oklch(0.9 0.012 80);
+  --input: oklch(0.9 0.012 80);
+  --ring: oklch(0.56 0.1 195);
+
+  /* Chart hues — the aurora blobs in the animated background pull from these */
+  --chart-1: oklch(0.74 0.15 52); /* amber   */
+  --chart-2: oklch(0.66 0.17 16); /* rose    */
+  --chart-3: oklch(0.6 0.13 300); /* plum    */
+  --chart-4: oklch(0.68 0.12 205); /* cyan    */
+  --chart-5: oklch(0.76 0.15 135); /* green   */
+
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Base surfaces — deep espresso */
+    --background: oklch(0.205 0.018 45);
+    --foreground: oklch(0.95 0.012 85);
+    --card: oklch(0.245 0.02 45);
+    --card-foreground: oklch(0.95 0.012 85);
+
+    --primary: oklch(0.74 0.13 195);
+    --primary-foreground: oklch(0.2 0.02 45);
+
+    --secondary: oklch(0.78 0.13 62);
+    --secondary-foreground: oklch(0.2 0.02 45);
+
+    --muted: oklch(0.28 0.02 45);
+    --muted-foreground: oklch(0.72 0.015 65);
+
+    --accent: oklch(0.74 0.16 24);
+    --accent-foreground: oklch(0.2 0.02 45);
+
+    --destructive: oklch(0.65 0.2 27);
+
+    --border: oklch(0.34 0.02 48);
+    --input: oklch(0.34 0.02 48);
+    --ring: oklch(0.74 0.13 195);
+
+    --chart-1: oklch(0.78 0.15 52);
+    --chart-2: oklch(0.7 0.17 16);
+    --chart-3: oklch(0.66 0.13 300);
+    --chart-4: oklch(0.72 0.12 205);
+    --chart-5: oklch(0.8 0.15 135);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Font families — `font-serif` → Fraunces, base UI → Hanken Grotesk */
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Fraunces', ui-serif, Georgia, serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
